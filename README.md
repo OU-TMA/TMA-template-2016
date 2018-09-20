@@ -6,7 +6,9 @@ http://learn1.open.ac.uk/mod/forumng/discuss.php?d=5940#p59362
 
 I don't believe this is an 'Official' Open University LaTeX package.
 
-Thsi is how *I* installed it on OSX 10.9.4 after I had installed MacTEX-2014 
+# Installation (macOS)
+
+This is how *I* installed it on OSX 10.9.4 after I had installed MacTEX-2014 
 
 	$ mkdir ~/Library/texmf/
 	$ mkdir ~/Library/texmf/tex
