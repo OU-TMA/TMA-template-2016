@@ -1,8 +1,8 @@
-\documentclass[12pt]{article}
+\documentclass[a4paper,12pt]{article}
 \usepackage{tma}
 
 \myname{Peter McFarlane}
-\mypin{W2770175}
+\mypin{A1234567}
 \mycourse{L101}
 \mytma{01}
 
@@ -11,23 +11,26 @@
 
 \begin{document}
 
-\hfill\fbox{Update for 2013/10/31 v1.02}
+\hfill\fbox{Update for 2016/10/26 v1.03b}
 
 \section*{Notes}
 \thispagestyle{empty}
 
-This is a sample TMA using my tma.sty package.  In order to use it, the tma.sty should be in the same
-directory/folder as your main .tex source file, or in the filepath for your compiler.  Using MiKTeX v2.9
-on Windoze this would be (you need to add the tma folder):\\
+This document describes Peter McFarlane's \verb|tma| package.  In order to use it, the \verb|tma.sty| file should be in the 
+same directory/folder as your main \verb|.tex| source file, or in the filepath for your compiler. Using MiKTeX v2.9
+on Windows this would be (you need to add the tma folder):\\
  \verb|C:\Program Files\MiKTex 2.9\tex\latex\tma|
 
-Once you have added tma.sty to the directory, it is necessary to let MiKTeX know that it is there. So
-load MiKTeX, go to MiKTeX Settings and press the `Refresh FNDB' button that tells \LaTeX\ to remake the
-database of all the files, then it will find tma.sty. See \verb|http://docs.miktex.org/manual/configuring.html#fndbupdate|.
- 
+Once you have added \verb|tma.sty| to the directory, it is necessary to let MiKTeX know that it is there. So
+load MiKTeX, go to MiKTeX Settings and press the `Refresh FNDB' (\textbf{F}ile \textbf{N}ame \textbf{D}ata\textbf{B}ase) button that tells \LaTeX\ to remake the
+database of all the files, then it will find \verb|tma.sty|. See:\\
+ \verb|http://docs.miktex.org/manual/configuring.html#fndbupdate|.
+
+Other \TeX\ installations will have similar centralised file storage settings for style files.
+
 The contents of the file in which you write a TMA should look like this:
 \begin{verbatim}
-\documentclass[12pt]{article}
+\documentclass[a4paper,12pt]{article}
 \usepackage{tma}
 %% or include options [roman] or [alph]:
 % \usepackage[roman]{tma} % For Roman numerals in subparts
@@ -50,7 +53,7 @@ It is not necessary to use \verb|\include| and write your questions in separate 
 question with \verb|\begin{question}| and end it with \verb|\end{question}|, whether or not you use
 separate files for each question or write all the questions in the main text.
 
-If you wish to have margin notes, then include \verb|\marginnotes	| in your preamble, whereupon
+If you wish to have margin notes, then include \verb|\marginnotes| in your preamble, whereupon
 \verb|\marginnote{}| is equivalent to \verb|\marginpar{}| and places the context of the brackets in the margin.
 
 The question numbers and question parts appear in the margin.
@@ -58,11 +61,36 @@ The question numbers and question parts appear in the margin.
 The normal sequence for numbering of questions is Arabic numerals for the main question numbers; letters for
 the parts; and Roman numerals for the subparts. If you are on a module that uses Roman numerals for the part,
 such as M381, then you can pass the option \verb|[roman]| to the \verb|\usepackage| command to vary the numbering
-system.
+system. See below for further details of options.
 
 If you want to skip a question (ie jump straight from question 1 to question 3, then use (for example)
 \verb|\begin{question}[3]|. To get parts of questions (a), (b), (c) etc, use \verb|\qpart|. To skip part
 question numbers \verb|\qqpart[3]| would force a (c).  For subparts (i), (ii), (iii) etcetera then use \verb|\qsubpart|.
+
+There is a slight gap between paragraphs and no indent, although as mentioned, the
+question numbers are in the left hand margin.
+
+\subsection*{Options}
+
+When requesting the \verb|tma| package with the \verb|\usepackage| command, it is possible to also pass one or 
+more optional parameters to influence the way that the package will operate.  Just as it is typical to let the 
+\verb|\documentclass| have options specifying the paper and font size, so can many other packages being given options.
+
+\begin{tabular}[2]{lp{0.8\textwidth}}
+  \hline
+  \textbf{Option}      & \textbf{Effect} \\
+  \hline
+  \noalign{\vskip 3pt}
+  \verb|[alph]|        & (default) question numbering as 1(b)(iii) \\
+  \verb|[roman]|       & varies question numbering to sequence used by M381 i.e. 1(ii)(c) \\
+  \verb|[cleveref]|    & question numbering creates automatic referencing for use with \verb|cleveref| package \\
+  \verb|[pdfbookmark]| & add pdf bookmarks for each question using \verb|hyperref| package \\
+  \hline
+\end{tabular}
+
+To use a package option, place the option(s) before the package name in square brackets, for example:\\
+ \verb|\usepackage[roman,cleveref]{tma}|
+
 
 \subsection*{New commands}
 
@@ -87,53 +115,82 @@ integral's equation instead of being part of it.
 
 Other commands, some of which have been plagiarised from other peoples' style files include mathematical
 functions for the principle logarithm, and various group theory and complex analysis functions.  Also a
-\verb|\rect| is included for M208 people (other shapes are included by virtue of the wasysym package).
+\verb|\rect| is included for M208 people (other shapes are included by virtue of the \verb|wasysym| package).
 
-\begin{tabular}[3]{lll}
-\verb|\Rr|         & \Rr         & (for a region)                                \\
-\verb|\ve{j}|      & $\ve{j}$    & for emboldened vectors                        \\
-\verb|\vec{AB}|    & $\vec{AB}$  & for traditional vectors                       \\
-\verb|1\st|        & $1\st$      & also \verb|\nd|, \verb|\rd|, \verb|\nth|      \\
-\verb|\rect|       & \rect       \\
-\verb|\comb{3}{5}| & \comb{3}{5} \\
-\verb|\perm{3}{5}| & \perm{3}{5} \\
-\verb|\re|         & $\re $      & \verb|\Re| will produce the traditional $\Re$ \\
-\verb|\im|         & $\im $      & \verb|\Im| will produce $\Im$                 \\
-\verb|\Log|        & $\Log $     \\
-\verb|\Arg|        & $\Arg $     \\
-\verb|\Wnd|        & $\Wnd $     \\
-\verb|\Res|        & $\Res $     \\
-\verb|\Ker|        & $\Ker $     \\
-\verb|\Res|        & $\Res $     \\
-\verb|\Orb|        & $\Orb $     \\
-\verb|\Stab|       & $\Stab $    \\
-\verb|\Fix|        & $\Fix $
-\end{tabular}
+\begin{table}[ht]
+  \centering
+  \begin{tabular}[3]{lll}
+    \hline
+    \verb|\Rr|         & \Rr         & (for a region)                                \\
+    \verb|\ve{j}|      & $\ve{j}$    & for emboldened vectors                        \\
+    \verb|\vec{AB}|    & $\vec{AB}$  & for traditional vectors                       \\
+    \verb|1\st|        & $1\st$      & also \verb|\nd|, \verb|\rd|, \verb|\nth|      \\
+    \verb|\rect|       & \rect       \\
+    \verb|\comb{3}{5}| & \comb{3}{5} \\
+    \verb|\perm{3}{5}| & \perm{3}{5} \\
+    \verb|\re|         & $\re $      & \verb|\Re| will produce the traditional $\Re$ \\
+    \verb|\im|         & $\im $      & \verb|\Im| will produce $\Im$                 \\
+    \verb|\Log|        & $\Log $     \\
+    \verb|\Arg|        & $\Arg $     \\
+    \verb|\Wnd|        & $\Wnd $     \\
+    \verb|\Res|        & $\Res $     \\
+    \verb|\Ker|        & $\Ker $     \\
+    \verb|\Res|        & $\Res $     \\
+    \verb|\Orb|        & $\Orb $     \\
+    \verb|\Stab|       & $\Stab $    \\
+    \verb|\Fix|        & $\Fix $     \\
+    \hline
+  \end{tabular}
+\end{table}
 
-\subsection*{Package automatically loaded}
+\newpage
+\subsection*{Packages automatically loaded}
 
-Packages provided within the tma package are:
+Some packages are automatically loaded when the \verb|tma| package is used. These are shown in the table below:
 
-amssymb   \\
-amsmath   \\
-amsfonts  \\
-amsthm    \\
-upgreek   \\
-wasysym   \\
-bm        \hspace{1cm}This allows you to embolden math formulae:
-          \verb|$\bm{\int \e^x\dd x}$|
-          \[\int \e^x \dd x=\bm{\int \e^x \dd x}\]
-fancyhdr  \\
-geometry  \\
-xifthen   \\
-verbatim  \\
-graphicx  \\
-lastpage
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{cl}
+    \hline
+    \textbf{\sc Package}   & \textbf{\sc Notes} \\
+    \hline
+    \noalign{\vskip 3pt}
+    \texttt{amsfonts}  & \\
+    \texttt{amsmath}   & \\
+    \texttt{amssymb}   & \\
+    \texttt{amsthm}    & \\
+    \texttt{bm}        &  \begin{minipage}[t]{0.8\textwidth}
+			    This allows you to embolden maths formulae: \\
+			    \verb|$\bm{\int \e^x \dd x}$| \\
+			    $$\int \e^x \dd x=\bm{\int \e^x \dd x}$$
+			  \end{minipage}\\
+    \texttt{fancyhdr}  & \\
+    \texttt{geometry}  & \\
+    \texttt{graphicx}  & \\
+    \texttt{lastpage}  & \\
+    \texttt{upgreek}   & \\
+    \texttt{verbatim}  & \\
+    \texttt{wasysym}   & \\
+    \texttt{xifthen}   & \\[4pt]
+    \hline
+    \noalign{\vskip 4pt}
+    \texttt{cleveref}  & {This is only loaded if the \verb|cleveref| option is given to the style.} \\
+    \texttt{hyperref}  & {This is only loaded if the \verb|pdfbookmark| option is given to the style.} \\
+    \hline
+  \end{tabular}
+\end{table}
 
+Note that the latter two packages are conditionally loaded only when the appropriate option is specified.
 
-I have made a slight gap between paragraphs and no indent, although as mentioned, the
-question numbers are in the left hand margin.
+\vskip 1in
 
-I welcome any comments, ideas, or suggestions (either of style, or for more macros).
+\subsection*{\dots and finally}
+
+Any comments, ideas, or suggestions (either of style, or for more macros) are welcomed.
+
+\vskip 1in
+
+$$\dots\quad\infty\quad\maltese\quad\infty\quad\dots$$
 
 \end{document}
+
